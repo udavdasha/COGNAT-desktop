@@ -40,9 +40,12 @@ COGNAT::COGNAT()
     setFocusPolicy(Qt::StrongFocus);
 
     database = new Database(databasePath, MaxNeighborhoodRadius, this);
+    database->setObjectName(QString(DATABASE_NAME));
+    database->setWindowTitle("COGNAT Database informs...");
     mainWidget = NULL;
 
-    //setWindowIcon(QIcon(":/images/icon.png"));
+    setWindowIcon(QIcon(":/COGNAT_icon.ico"));
+    setWindowTitle(QString("COGNAT (COmparative Gene Neighborhoods Analysis Tool)"));
     //setCurrentFile("");
 }
 
@@ -129,7 +132,7 @@ void COGNAT::load() // 1.1
             if (loadPath.isEmpty()) {
                 loadPath = QDir::homePath();
             }
-            QString fileName = QFileDialog::getOpenFileName(this, tr("Load"), loadPath, tr("Text files (*.txt);;All files (*.*)"));
+            QString fileName = QFileDialog::getOpenFileName(this, tr("Load"), loadPath, tr("All files (*.*);;Text files (*.txt)"));
             fileName = QFileInfo(fileName).canonicalFilePath();
             if (!fileName.isEmpty()) {
                 loadPath = QFileInfo(fileName).canonicalPath();
@@ -522,8 +525,9 @@ void COGNAT::about() // 5.1
 {
     QMessageBox::about(this, tr("About COGNAT"),
                        tr("<h2>COGNAT</h2>"
-                          "<h3>Comparative Gene Neighborhoods Analysis Tool</h3>"
-                          "<p>Copyright &copy; 2017 Molecular Bioenergetics Group</p>"));
+                          "<h3>COmparative Gene Neighborhoods Analysis Tool</h3>"
+                          "<p>Copyright &copy; 2020, Molecular Bioenergetics Group</p>"
+                          "<p>A.N.Belozersky Institute of Physico - Chemical Biology, Lomonosov MSU"));
 }
 
 void COGNAT::setColorGenesComboBox(QAction *action) // 3.5

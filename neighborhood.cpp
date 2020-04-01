@@ -72,7 +72,7 @@ Neighborhood::Neighborhood(const QString &gi, const int &height, Database *datab
                 gene->setData(Gene::Gi, gi);
                 gene->setData(Gene::IsGene, true);
                 gene->setData(Gene::IsMarked, false);
-                gene->setData(Gene::Color, Qt::lightGray);
+                gene->setData(Gene::Color, QColor(Qt::lightGray));
                 gene->setPos(x, 0);
                 gene->setVisible(false);
                 gene->setZValue(z);
@@ -139,7 +139,7 @@ Neighborhood::Neighborhood(const QString &gi, const int &height, Database *datab
                 gene->setData(Gene::Gi, gi);
                 gene->setData(Gene::IsGene, true);
                 gene->setData(Gene::IsMarked, false);
-                gene->setData(Gene::Color, Qt::lightGray);
+                gene->setData(Gene::Color, QColor(Qt::lightGray));
                 gene->setPos(x, 0);
                 gene->setVisible(false);
                 gene->setZValue(z);

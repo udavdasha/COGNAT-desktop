@@ -39,7 +39,7 @@ void BottomWidget::setSchemeOutput(Database *database)
         int quantity = iterator.key();
         QString architecture = iterator.value();
 
-        QFontMetricsF metrics = qApp->font();
+        QFontMetricsF metrics(qApp->font());
         QString number = QString("  #") + QString::number(quantity);
         int quantityWidth = metrics.boundingRect(number).width();
         int quantityHeight = metrics.boundingRect(number).height();

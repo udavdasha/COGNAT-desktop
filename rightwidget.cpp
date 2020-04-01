@@ -29,12 +29,12 @@ RightWidget::RightWidget(MainWidget *parent)
     headerWidget = new QTableWidget(0, 1, this);
     headerWidget->setHorizontalHeaderLabels(QStringList() << tr("Annotation"));
     headerWidget->horizontalHeader()->setStretchLastSection(true);
-    headerWidget->horizontalHeader()->setClickable(false);
+    headerWidget->horizontalHeader()->setSectionsClickable(false);
     headerWidget->setMaximumHeight(headerWidget->horizontalHeader()->height());
 
     QString tip = tr("Here can be displayed an annotation of genes and intergenic spaces.");
 
-    QFontMetricsF metrics = qApp->font();
+    QFontMetricsF metrics(qApp->font());
     int minimumWidth = metrics.boundingRect("\t\t\t\t\t\t").width();
     int verticalScrollBarWidth = headerWidget->verticalScrollBar()->sizeHint().width();
 
@@ -170,12 +170,14 @@ void RightWidget::annotateGene(const QString &gi, const int &minscore, const int
 
     textBrowser->append(tr("Amino Acid Sequence:")); // 19
     textBrowser->setCurrentFont(sequenceFont);
+    textBrowser->append(tr(">%1 %2").arg(id).arg(description));
     textBrowser->append(proteinSequence);
     textBrowser->setCurrentFont(defaultFont);
     textBrowser->append("");
 
     textBrowser->append(tr("Nucleotide Sequence:")); // 20
     textBrowser->setCurrentFont(sequenceFont);
+    textBrowser->append(tr(">%1_nucl %2").arg(id).arg(description));
     textBrowser->append(nucleotideSequence);
     textBrowser->setCurrentFont(defaultFont);
 
@@ -227,14 +229,18 @@ void RightWidget::annotateIntergene(const QString &gi, const int &start, const i
     textBrowser->append(tr("Definition:\t%1").arg(definition)); // 7
     textBrowser->append("");
 
+    // NCBI format for such names is as follows:
+    // >NC_000913.3:1175427 - 1176626 Escherichia coli str.K - 12 substr.MG1655, complete genome
     textBrowser->append(tr("Nucleotide Sequence (5'-3'):")); // 8
     textBrowser->setCurrentFont(sequenceFont);
+    textBrowser->append(tr(">%1:%2 - %3").arg(accession).arg(start).arg(end));
     textBrowser->append(positiveSequence);
     textBrowser->setCurrentFont(defaultFont);
     textBrowser->append("");
 
-    textBrowser->append(tr("Nucleotide Sequence (3'-5'):")); // 8
+    textBrowser->append(tr("Reverse complement sequence:")); // 8
     textBrowser->setCurrentFont(sequenceFont);
+    textBrowser->append(tr(">%1(-1):%2 - %3").arg(accession).arg(start).arg(end));
     textBrowser->append(negativeSequence);
     textBrowser->setCurrentFont(defaultFont);
 

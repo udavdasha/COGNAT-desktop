@@ -8,12 +8,12 @@
 SetMinimumScoreWidget::SetMinimumScoreWidget(const int &minscore, QWidget *parent)
     : QWidget(parent)
 {
-    scoreLabel = new QLabel(tr("A minimum domain/COG score (should be greater than 24 bits):"), this);
+    scoreLabel = new QLabel(tr("A minimum domain/COG score (should be greater than 10 bits):"), this);
 
     hintLabel = new QLabel(tr("Domains/COGs with scores lower than a minimum score will not be shown."), this);
 
     scoreSpinBox = new QSpinBox(this);
-    scoreSpinBox->setRange(25, 100500);
+    scoreSpinBox->setRange(11, 100500);
     scoreSpinBox->setValue(minscore);
     scoreSpinBox->setSuffix(tr(" bits"));
 

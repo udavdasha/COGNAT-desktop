@@ -44,10 +44,10 @@ void TopWidget::setTableOutput(Database *database)
     tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
 
     tableWidget->resizeColumnsToContents();
-    tableWidget->horizontalHeader()->setResizeMode(QHeaderView::Fixed);
-    tableWidget->horizontalHeader()->setClickable(false);
-    tableWidget->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-    tableWidget->verticalHeader()->setClickable(false);
+    tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    tableWidget->horizontalHeader()->setSectionsClickable(false);
+    tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    tableWidget->verticalHeader()->setSectionsClickable(false);
 
     tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -61,7 +61,7 @@ void TopWidget::setTableOutput(Database *database)
     headerWidget = new QTableWidget(0, 1, this);
     headerWidget->setHorizontalHeaderLabels(QStringList() << tr("Gene Neighborhoods"));
     headerWidget->horizontalHeader()->setStretchLastSection(true);
-    headerWidget->horizontalHeader()->setClickable(false);
+    headerWidget->horizontalHeader()->setSectionsClickable(false);
     headerWidget->setMaximumHeight(headerWidget->horizontalHeader()->height());
 
     graphicsScene = new GraphicsScene(tableWidget, database, this);
@@ -126,7 +126,7 @@ void TopWidget::setTreeOutput(Database *database)
     headerWidget = new QTableWidget(0, 1, this);
     headerWidget->setHorizontalHeaderLabels(QStringList() << tr("Gene Neighborhoods"));
     headerWidget->horizontalHeader()->setStretchLastSection(true);
-    headerWidget->horizontalHeader()->setClickable(false);
+    headerWidget->horizontalHeader()->setSectionsClickable(false);
     headerWidget->setMaximumHeight(headerWidget->horizontalHeader()->height());
 
     int oldHeaderHeight = treeView->header()->height();

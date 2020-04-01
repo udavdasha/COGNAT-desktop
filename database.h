@@ -1,6 +1,8 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
+#define DATABASE_NAME "COGNATDatabase"
+
 #include <QDir>
 #include <QList>
 #include <QMap>

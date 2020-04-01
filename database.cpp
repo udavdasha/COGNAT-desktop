@@ -634,9 +634,11 @@ QString Database::nucleotideSequenceOf(const QString &gi) const
 
     if (!coordinates.isEmpty() && !accession.isEmpty()) {
         foreach (const QString &dirPath, addressMap.keys()) {
-            if (dirPath.endsWith(accession)) {
+            QStringList accession_parts = accession.split(".", QString::SkipEmptyParts);
+            QString accession_first_part = accession_parts.at(0);
+            if (dirPath.endsWith(accession_first_part)) {
                 QDir dir(dirPath);
-                gFileName = dir.filePath(QString("g_%1.fasta").arg(accession));
+                gFileName = dir.filePath(QString("g_%1.fasta").arg(accession_first_part));
                 break;
             }
         }
@@ -689,9 +691,11 @@ QString Database::forwardSequenceOf(const QString &gi, const int &start, const i
 
     if (!accession.isEmpty()) {
         foreach (const QString &dirPath, addressMap.keys()) {
-            if (dirPath.endsWith(accession)) {
+            QStringList accession_parts = accession.split(".", QString::SkipEmptyParts);
+            QString accession_first_part = accession_parts.at(0);
+            if (dirPath.endsWith(accession_first_part)) {
                 QDir dir(dirPath);
-                gFileName = dir.filePath(QString("g_%1.fasta").arg(accession));
+                gFileName = dir.filePath(QString("g_%1.fasta").arg(accession_first_part));
                 break;
             }
         }
@@ -854,7 +858,8 @@ bool Database::okTextFile(const QString &fileName)
     }
 
     QRegExp gi("[0-9]+");
-    QRegExp id("[A-Z]{2}\\_[0-9]+\\.?[0-9]?");
+    //QRegExp id("[A-Z]{2}\\_[0-9]+\\.?[0-9]?");
+    QRegExp id("[A-Z0-9]+.?[0-9]?");
     QTextStream in(&file);
     while (!in.atEnd()) {
         QString line = in.readLine();
@@ -1025,7 +1030,8 @@ bool Database::okMFile(const QString &fileName)
         QString gi = line.section("\t", 0, 0);
         if (proteinMap.contains(gi)) {
             QString number = line.section("\t", 1, 1);
-            if (number != "0") {
+            int helices_number = number.toInt();
+            if (helices_number > 1) {
                 proteinMap[gi].setHelices(number);
             }
         } // A necessary check, otherwise a default value will be inserted into a map.

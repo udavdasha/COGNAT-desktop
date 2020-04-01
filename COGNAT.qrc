@@ -1,9 +1,10 @@
 <RCC>
-<qresource>
-    <file>images/save.png</file>
-    <file>images/search.png</file>
-    <file>images/sort.png</file>
-    <file>images/mark.png</file>
-    <file>images/show.png</file>
-</qresource>
+    <qresource prefix="/">
+        <file>images/mark.png</file>
+        <file>images/save.png</file>
+        <file>images/search.png</file>
+        <file>images/show.png</file>
+        <file>images/sort.png</file>
+        <file>COGNAT_icon.ico</file>
+    </qresource>
 </RCC>
