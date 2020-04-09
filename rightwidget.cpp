@@ -114,7 +114,7 @@ void RightWidget::annotateGene(const QString &gi, const int &minscore, const int
     if (strand > 0) {
         textBrowser->append(tr("Strand:\t\"+\" (5'-3')")); // 15
     } else if (strand < 0) {
-        textBrowser->append(tr("Strand:\t\"-\" (3'-5')")); // 15
+        textBrowser->append(tr("Strand:\t\"-\" (complement)")); // 15
     }
     textBrowser->append(tr("Coords:\t%1").arg(coordinates)); // 13
     textBrowser->append(tr("Length:\t%1 amino acids").arg(proteinLength)); // 14
@@ -133,7 +133,7 @@ void RightWidget::annotateGene(const QString &gi, const int &minscore, const int
         if (!COGs.isEmpty()) {
             textBrowser->append("\tE-value\tScore\tStart\tEnd\tProfile %");
             foreach (const Domain &COG, COGs) {
-                QString hyperlink = QString("<a href=http://cmgm.stanford.edu/~merino/COGs/%1.html>%1</a>").arg(COG.getAccession());
+                QString hyperlink = QString("<a href=https://ftp.ncbi.nih.gov/pub/COG/COG2014/static/byCOG/%1.html>%1</a>").arg(COG.getAccession());
                 QString evalue = COG.getEValue();
                 QString bitScore = QString::number(COG.getBitScore());
                 QString start = QString::number(COG.getStart());

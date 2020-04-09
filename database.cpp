@@ -859,7 +859,7 @@ bool Database::okTextFile(const QString &fileName)
 
     QRegExp gi("[0-9]+");
     //QRegExp id("[A-Z]{2}\\_[0-9]+\\.?[0-9]?");
-    QRegExp id("[A-Z0-9]+.?[0-9]?");
+    QRegExp id("[A-Z0-9_]+.?[0-9]?");
     QTextStream in(&file);
     while (!in.atEnd()) {
         QString line = in.readLine();

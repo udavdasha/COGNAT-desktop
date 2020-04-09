@@ -55,9 +55,15 @@ int Domain::getLength() const
 
 int Domain::getRelativeLength() const
 {
+    /* An error here was that <end> and <start> was taken in protein coordinates thus their dirrerence can slightly differ from length of profile
+       (e.g. in case when a protein contains insertions, and profile covers it from start to end, the length of hit inside a protein could be 
+       more than length of profile).
+       Now data in the COGNAT database is changed and <profileLength> value becomes <profileCoverage>
     int relativeLength = (end - start + 1) * 100 / profileLength;
     if (relativeLength > 100) {
         relativeLength = 100;
     }
     return relativeLength;
+    */
+    return profileLength;
 }

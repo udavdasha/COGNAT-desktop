@@ -23,17 +23,17 @@ void TaxonomyModel::setTaxonomyData(Database *database) const
 
         QString domain = database->domainOf(gi);
         QString phylum = database->phylumOf(gi);
-        if (phylum.startsWith("Candidatus")) {
+        /*if (phylum.startsWith("Candidatus")) {
             phylum = phylum.section(" ", 1, 1);
         } else if (phylum.startsWith("candidate division")) {
             phylum = phylum.section(" ", 2, 2);
-        }
+        }*/
         QString class_ = database->classOf(gi);
-        if (class_.startsWith("Candidatus")) {
+        /*if (class_.startsWith("Candidatus")) {
             class_ = class_.section(" ", 1, 1);
         } else if (class_.startsWith("candidate division")) {
             class_ = class_.section(" ", 2, 2);
-        }
+        }*/
         QString source = database->sourceOf(gi);
         if (domain.isEmpty()) {
             domain = tr("unknown");

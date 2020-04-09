@@ -277,11 +277,11 @@ void TopWidget::addRows(Database *database)
         tableWidget->insertRow(row);
 
         QString phylum = database->phylumOf(gi);
-        if (phylum.startsWith("Candidatus")) {
+        /*if (phylum.startsWith("Candidatus")) {
             phylum = phylum.section(" ", 1, 1);
         } else if (phylum.startsWith("candidate division")) {
             phylum = phylum.section(" ", 2, 2);
-        }
+        }*/
         QTableWidgetItem *item0 = new QTableWidgetItem;
         if (!phylum.isEmpty()) {
             item0->setText(phylum);
